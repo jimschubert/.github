@@ -5,6 +5,8 @@ permissions:
   contents: read
   pull-requests: read
 
+# Concurrency ensures only one workflow runs per PR at a time
+# Uses PR number for pull_request events, falls back to ref for other events
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
